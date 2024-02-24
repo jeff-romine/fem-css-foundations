@@ -1,0 +1,236 @@
+#+TITLE:     Frontend Masters CSS Foundations
+#+AUTHOR:    Jeff Romine
+#+EMAIL:     jromineut@gmail.com
+#+DATE:      2024-02-23 Fri
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS: ^:{} author:nil email:nil creator:nil timestamp:nil
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+#+XSLT:
+#+STARTUP: showeverything
+
+* [[https://frontendmasters.com/courses/css-foundations][CSS Foundations]]
+
+** Resources
+
+*** [[https://github.com/emmabostian/fem-css-foundations][Course Code & Slides]]
+
+* CSS Basics
+
+** How CSS Is Rendered
+
+1. Browser loads HTML
+2. Converts HTML to the DOM
+3. Fetches linked resources
+4. Browser parses CSS
+5. Render tree is laid out
+6. UI is painted (First contentful paint)
+
+** Terminology + Core Concepts
+
+- Elements
+  - Replaced
+  - Non-Replaced
+  - Block
+    - Rendered in consequtive
+  - Inline
+    - Added to normal line flow
+
+*  Selectors
+
+Selects the HTML element or elemnts you want to apply some styles to.
+
+** Type selectors
+
+#+begin_src css
+h1 {
+  color: red;
+}
+#+end_src
+
+** Class selectors
+#+begin_src css
+.title {
+  color: red;
+}
+#+end_src
+
+** ID Selector
+#+begin_src css
+#title {
+  color: red;
+}
+#+end_src
+
+** Universal Selector
+
+#+begin_src css
+,* {
+  color: red;
+}
+
+#+end_src
+
+** Combining Selectors
+
+*** All paragraphs withing elements that have the "body" class.
+
+#+begin_src css
+.body p {
+  color: blue;
+}
+#+end_src
+
+
+*** All paragraphs with id blue within elements with "body" class.
+
+#+begin_src css
+.body p#blue {
+  color: blue;
+}
+#+end_src
+
+
+** Specificity
+
+*** Inheritance
+
+
+*** Specificity
+
+#+begin_quote
+The algorithm used by browsers to determine which CSS declaration
+should be applied.
+
+Each selector has a calculated weight.  The most specific weight wins.
+#+end_quote
+
+
+**** Weighting
+
+- 1 for each of ID, Class, Type
+- Precedence
+  - ID
+  - Class
+  - Type
+- Inline styles overrule
+- !Important
+
+
+
+#+begin_src css
+
+#text {
+  color: red !important;
+}
+#+end_src
+
+**** [[specificity.keegan.st][Specificity Calculator]]
+
+
+** Color
+
+- Named color
+  - color: blue;
+- Hexadecimal
+  - color: #0000FF;
+  - shorthand
+    - #FFF = #FFFFFF
+- RGB
+  - color: rgb(31, 120, 50);
+  - color: rgb(30%, 20%,5%);
+- RGBA
+  - color: rgba(255,255,255,.5); or color: rgb(255,255,255,.5);
+  - color: rgba(255 255 255 /.5); or color: rgb(255 255 255 /.5);
+- HSL (Hue Saturation Luminance)
+  - color: hsl(50 80% 40%);
+  - color: hsl(150deg 30%);
+  - color: hsl(150deg 30% 40% / .5)
+
+** Fonts & Typography
+
+serif and sans-serif are generic fonts and the fallback
+
+font-family: Georgia, serif;
+font-family: "Comic Sans", sans-serif;
+
+*** Generic Font Families
+
+- serif
+- sans-serif
+- monospace
+- cursive
+- fantasy
+- system-ui
+
+**** [[https://developer.mozilla.org/en-US/docs/Web/CSS/font-family][font-family docs]]
+
+*** Monospace fonts
+
+*** Font Weight
+
+font-weight: normal;
+font-weight: bolder;
+
+*** Font Weight Numerical Mappings
+
+
+***  Font Size Values
+
+- absolute values
+  - xx-small
+  - x-small
+  - small
+  - medium
+  - large
+  - x-large
+  - xx-large
+  - xxx-large
+- relative values
+  - smaller
+  - larger
+- length values
+  - px
+  - em
+    - relative to parent
+  - rem
+    - relative to root
+- percentage values
+- global values
+  - inherit
+  - initial
+  - [[https://developer.mozilla.org/en-US/docs/Web/CSS/revert][revert]]
+  - [[https://developer.mozilla.org/en-US/docs/Web/CSS/revert-layer][revert-layer]]
+  - unset
+
+*** Text Decoration
+
+Sets the appearance of te decorative lines on text
+
+Shorthand for:
+- text-decorationpon-line
+- text-decoration-color
+- text-decoration-styles
+- text-decoration-thickness
+
+#+begin_src css
+p {
+  text-decoration-line: underline;
+  text-decoration-color: red;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 4px;
+}
+
+// Shorthand
+p {
+text-decoration: underline red dashed 4px;
+}
+
+#+end_src
