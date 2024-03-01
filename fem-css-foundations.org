@@ -22,6 +22,8 @@
 
 *** [[https://github.com/emmabostian/fem-css-foundations][Course Code & Slides]]
 
+*** [[https://www.figma.com/file/LEzNgBz63KLExeHNUyLCwH/FEM-CSS?type=design&node-id=0-1][Figma designs]]
+
 * CSS Basics
 
 ** How CSS Is Rendered
@@ -234,3 +236,461 @@ text-decoration: underline red dashed 4px;
 }
 
 #+end_src
+
+* Layout
+
+** Layout Methods History
+
+- table
+  - Bad for accessibility
+- display
+  - inline or block
+- floats
+  - removes elements from normal page flow.
+  - tricky
+
+** Flexbox & Grid
+
+*** Flexbox
+- Layout or distribute space in a container of unknow size
+
+
+**** Additional material
+
+***** [[https://codepen.io/emmabostian/pen/bGmRGRJ][Flexbox Codepen]]
+
+***** [[https://frontendmasters.com/learn/css/][Frontend Masters CSS Learning Path]]
+
+***** [[https://css-tricks.com/snippets/css/a-guide-to-flexbox/][A Complete Guide to Flexbox (CSS Tricks)]]
+
+**** Flexbox properties
+
+flex-direction: row;
+flex-direction: reverse;
+flex-direction: column;
+flex-direction: reverse;
+justify-content: flex-start;
+justify-content: flex-end;
+justify-content: center;
+justify content: space-between;
+justify-content: space-around;
+justify-content: space-evenly;
+align-items: flex-start;
+align-items: flex-end;
+align-items: center;
+align-items stretch;
+flex-wrap: no-wrap;
+flex-wrap: wrap;
+
+*** Grid
+
+2 dimensional vs 1 dimensional
+
+Grid is meant for 2 dimensional and Flexbox is meant for 1
+dimensional.
+
+#+begin_src css
+.container {
+  display: grid;
+}
+#+end_src
+
+**** grid-template-columns
+
+#+begin_src css
+.container {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+}
+#+end_src
+
+#+begin_src css
+.container {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  grid-template-rows: 80px 1fr 100px;
+}
+#+end_src
+
+#+begin_src css
+.container {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  grid-template-rows: 80px 1fr 100px;
+}
+#+end_src
+
+#+begin_src css
+nav { grid-area: 1 / 1 / 2 / 3; }
+aside { grid-area: 2 / 1 / 4 / 2; }
+main { grid-area: 2 / 2 / 3 / 3 }
+footer { grid-area: 3 / 2 / 4 / 3;}
+
+
+#+end_src
+
+#+begin_src css
+.container {
+  grid-template-areas:
+    "nav nav"
+    "aside main"
+    "aside footer";
+}
+
+nav {grid-area: nav; }
+aside { grid-area: aside; }
+main { grid-area: main; }
+footer { grid-area: footer; }
+
+
+#+end_src
+***** Additional Material
+
+****** [[https://css-tricks.com/almanac/properties/g/grid-area/][grid-area (CSS Tricks)]]
+
+****** [[https://codepen.io/emmabostian/pen/vYVJGEY][grid Code Pen]]
+
+** Combinators
+
+*** Descendant
+
+#+begin_src css
+ul li a {
+  color: red;
+}
+#+end_src
+
+*** Child Combinitors (Direct Descendants)
+
+#+begin_src css
+div.test > p {
+  font-weight: bold;
+}
+#+end_src
+
+
+*** Adjacent Sibling Comininators
+
+#+begin_src html
+<h1>Hello world</h1>
+<p>This is a paragraph!</p>
+<p>This is another paragraph!</p>
+#+end_src
+
+#+begin_src css
+h1 + p {
+  color: red;
+}
+#+end_src
+
+*** General Sibling Cominators
+
+#+begin_src css
+p ~ code {
+  color: red;
+}
+#+end_src
+
+
+** Block Element Modifier
+
+Design methodology that helps create reusable components and code
+sharing.
+
+*** Methodologies
+
+- OOCSS
+- SMACSS
+- SUITCVSS
+- Atomic
+- BEM
+
+
+***  Block
+
+- header
+- menu
+- input
+- checkbox
+
+
+*** Element
+
+- menu item
+- list item
+- header title
+
+
+*** Modifier
+
+- disabled
+- highlighted
+- checked
+- yellow
+
+.block__element--modifier
+
+*** BEM In Practice
+
+#+begin_src html
+<form class="form">
+  <input class="form__input" ... />
+  <input class="form__input form__input--disabled" ... />
+  <button class="form__button form__button--large" ... >Button</button>
+</form>
+#+end_src
+
+** CSS Header
+
+
+** Getting Started with CSS Q&A
+
+
+*** [[https://dribbble.com/][Dribble]]
+
+*** [[https://www.framer.com/][Framer]]
+
+React component generation
+
+*** [[sass-lang.com][Sass]]
+
+
+
+** The Box Model
+
+
+*** Standard Box Model
+
+ - With the standard box model you define width and height of the
+   content box
+ - Padding and border are added to those dimentsions to get the total
+   size
+
+
+
+*** Alternative Box Model
+
+
+
+** Z-Index & Positioning
+
+***  Z-Index
+Stacking of Elements
+
+- auto
+- <integer>
+- <global value>
+
+
+**** [[https://codepen.io/emmabostian/pen/vYQBQbe][Z-index Codepen]]
+
+*** Position
+
+**** [[https://developer.mozilla.org/en-US/docs/Web/CSS/position][Position MDN]]
+
+**** [[https://codepen.io/emmabostian/pen/wvQwQJy?editors=1100][Position Codepen]]
+
+**** static
+
+- Element is poistioned according to the normal flow of the document.
+- Top right bottm and left have no effect.
+
+**** relative
+
+Relative to where it would normally show up.
+
+- Element is positioned according to the normal document flow, but
+  offset relative to its normal postitioning.
+- Based on top, right, bottom, and left values.
+
+**** Absolute
+
+Relative to it's closest positioned ancestor
+
+- Element is removed from normal document flow.
+- Postioned relative to closest positioned ancestor.
+- Top, right, bottom, left values determine final position.
+
+
+***** [[https://codepen.io/emmabostian/pen/xxQKQjZ][Tooltip Example Codepen]]
+
+**** Fixed
+
+- Element is removed from normal document flow.
+- Positioned relative to the containing block established by the
+  viewport.
+- Top, right, bottom, left values determine final position.
+
+#+begin_src html
+<div class="container">
+  <div class="box box--red"></div>
+  <div class="box box--blue"></div>
+</div>
+#+end_src
+
+#+begin_src css
+.box {
+  width: 100px;
+  height: 100px;
+}
+
+.box--red {
+  background: red;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+#+end_src
+
+**** Sticky
+
+Won't stay beyond the container's end.
+
+
+** Border and Border Radius
+
+*** [[https://developer.mozilla.org/en-US/docs/Web/CSS/border][MDN Border docs]]
+
+*** [[https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius][MDN Border Radius Docs]]
+
+** Background, Dropshadow & Cursor
+
+*** Background
+
+- background-color
+- background-image
+- background-repeat
+- background-size
+- background-position
+- background (shorthand)
+
+*** [[https://developer.mozilla.org/en-US/docs/Web/CSS/background][MDN Background]]
+
+*** background-image
+
+#+begin_src css
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-image: url("cat.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: none;
+}
+#+end_src
+
+*** Drop Shadow
+
+**** [[https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/drop-shadow][MDN drop-shadow()]]
+
+#+begin_src css
+.block {
+  width: 100px;
+  height: 100px;
+  background: red;
+  filter: drop-shadow(10px 10px 10px black);
+}
+#+end_src
+
+*** Cursor
+
+
+**** [[https://developer.mozilla.org/en-US/docs/Web/CSS/cursor][Cursor MDN]]
+
+
+** Pseudo Classes, Elements & Transitions
+
+*** Pseudo- Classes
+**** [[https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes][MSN Pseudo-classes]]
+
+**** Input Pseudo-Classes
+
+- :enabled
+- :disabled
+- :checked
+- :required
+- :optional
+
+**** Location Pseudo-Classes
+
+- :any-link
+- :link
+- :visited
+
+**** Tree-Structural Pseudo-Classes
+
+- :root
+- :empty
+- :nth-last-child
+- :first-child
+- :last-child
+- :nth-of-type
+
+**** User Action Pseudo-Classes
+
+
+- :hover
+- :active
+- :focus
+
+
+**** Functonal Pseudo-Classes
+
+- :is()
+- :not()
+
+**** Examples
+
+#+begin_src html
+<input id="remember-me" type="checkbox"/>
+<label for="remember-me>Remember Me</label>
+#+end_src
+
+#+begin_src css
+input[type"checkbox"]: checked + label {
+  color: red;
+}
+#+end_src
+
+*** Pseudo-Elements
+
+- ::before
+- ::after
+- ::placeholder
+- ::first-line
+-
+**** [[https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements][MSN Pseudo-Elements]]
+
+*** Transitions
+
+- transition-property
+- transition-duration
+- transition-timing-function
+
+
+**** [[https://easings.net/][Easing functions]]
+
+**** [[https://codepen.io/emmabostian/pen/JjePwbJ][Transition Codepen]]
+
+
+** [[https://frontendmasters.com/courses/css-foundations/svg/][SVG]]
+
+***
+
+
+** Responsive Layout with Media Queries
+
+** Mobile Header Layout
+
+* Wrap Up
+
+** [[https://cssgrid-generator.netlify.app/]]
+
+** [[https://css-tricks.com/snippets/css/a-guide-to-flexbox/]]
+
+** [[https://unsplash.com/]]
+
+** [[https://cssgridgarden.com/]]
+
+** [[https://flexboxfroggy.com/]]
